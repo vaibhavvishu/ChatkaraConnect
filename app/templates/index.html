@@ -18,7 +18,8 @@
   </div>
 
   <nav>
-    <a href="#">Browse Caterers</a>
+    <a href="{% url 'vendors' %}">Browse Caterers</a>
+    <a href="{% url 'vendor_register' %}">Become a Vendor</a>
   </nav>
 
   <a href="#" class="btn-primary small">Login / Sign Up</a>
@@ -38,37 +39,38 @@
   </p>
 
   <!-- Search Box -->
-  <div class="search-box">
+  <form method="GET" action="{% url 'search' %}" class="search-box">
 
     <div class="field">
       <img src="{% static 'image/chatkaraconnect_location.svg' %}">
-      <select>
-        <option>Select Location</option>
-        <option>Indore</option>
-        <option>Bhopal</option>
+      <select name="location">
+        <option value="">Select Location</option>
+        <option value="Rau">Rau</option>
+        <option value="Indore">Indore</option>
+        <option value="Silicone city">Silicone city</option>
       </select>
     </div>
 
     <div class="field">
       <img src="{% static 'image/chatkaraconnect_calendar.svg' %}">
-      <select>
-        <option>Event Type</option>
-        <option>Wedding</option>
-        <option>Birthday</option>
-        <option>Corporate</option>
+      <select name="event_type">
+        <option value="">Event Type</option>
+        <option value="Wedding">Wedding</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Corporate">Corporate</option>
       </select>
     </div>
 
     <div class="field">
       <img src="{% static 'image/chatkaraconnect_rupee.svg' %}">
-      <input type="text" placeholder="Budget (₹)">
+      <input type="text" name="budget" placeholder="Budget (₹)">
     </div>
 
-    <button class="btn-primary">
+    <button type="submit" class="btn-primary">
       🔍 Search Caterers
     </button>
 
-  </div>
+  </form>
 </section>
 
 <!-- Why Choose Section -->

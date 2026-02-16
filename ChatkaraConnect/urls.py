@@ -12,7 +12,6 @@ urlpatterns = [
     path('vendor-register/', views.vendor_register, name='vendor_register'),
     path('vendors/', views.vendor_list, name='vendors'),
     path('vendor/<int:vendor_id>/', views.vendor_detail, name='vendor_detail'),
-    path('search/', views.search, name='search'),
 ]
 
 if settings.DEBUG:

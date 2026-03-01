@@ -38,6 +38,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.user.name
+    
 
 class Menu(models.Model):
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
@@ -58,6 +59,9 @@ class Availability(models.Model):
     available_date = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
+    def __str__(self):
+        return f"{self.vendor.business_name} - {self.available_date}"
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -75,10 +79,16 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Order #{self.id} - {self.customer.user.name}"
+
 class Feedback(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField()
+
+    def __str__(self):
+        return f"Feedback for Order #{self.order.id} - {self.rating} stars"
 
 class Payment(models.Model):
     PAYMENT_STATUS = [
@@ -90,4 +100,7 @@ class Payment(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_method = models.CharField(max_length=50)
     payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS)
+
+    def __str__(self):
+        return f"Payment for Order #{self.order.id} - {self.payment_status}"
 

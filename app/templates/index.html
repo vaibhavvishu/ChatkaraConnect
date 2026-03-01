@@ -72,6 +72,12 @@
     </button>
 
   </form>
+
+  <!-- Vendor Register CTA -->
+  <div class="vendor-cta">
+    <p>Are you a caterer or food vendor?</p>
+    <a href="{% url 'vendor_register' %}" class="btn-primary">Register as Vendor</a>
+  </div>
 </section>
 
 <!-- Why Choose Section -->
@@ -111,6 +117,64 @@
     </div>
 
   </div>
+</section>
+
+<!-- Book Now Section -->
+<section class="book-now">
+  <h2>Quick Booking</h2>
+  <p class="subtitle">Reserve a caterer for your event</p>
+  
+  <form method="POST" action="{% url 'create_booking' %}" class="booking-form">
+    {% csrf_token %}
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="event_date">Event Date</label>
+        <input type="date" id="event_date" name="event_date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <input type="number" id="guests" name="guests" min="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="event_type">Event Type</label>
+        <select id="event_type" name="event_type" required>
+          <option value="">Select Event Type</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Corporate">Corporate</option>
+          <option value="Anniversary">Anniversary</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <label for="special_requirements">Special Requirements</label>
+      <textarea id="special_requirements" name="special_requirements" rows="4" placeholder="Any dietary restrictions, preferences, or special requests..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary large">Book Now</button>
+  </form>
 </section>
 
 
